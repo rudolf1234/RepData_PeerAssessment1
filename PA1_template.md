@@ -47,13 +47,16 @@ for (i in unique(activity$date)) {
         "steps"])
     count <- count + 1
 }
+```
 
-hist(data.steps.1$steps, col = "red", main = "Total Number of Steps taken each day", 
+
+
+```r
+hist(data.steps.1$steps, breaks = 10, col = "red", main = "Total Number of Steps taken each day", 
     xlab = "Number of Steps taken each day")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
-
+![plot of chunk histogram_1](figure/histogram_1.png) 
 
 ---------------------------------------------------------------------------------------------
 ### Calculate and report the mean and median total number of steps taken per day
@@ -89,13 +92,17 @@ for (i in unique(activity$interval)) {
         "steps"])
     count <- count + 1
 }
+```
+
+
+
+```r
 plot(x = data.steps.2$interval, y = data.steps.2$steps, type = "l", lty = "solid", 
     lwd = 1, col = "black", main = "Average Number of Steps per 5-minutes time interval", 
     xlab = "Time Interval [min]", ylab = "Average Steps [steps]")
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
-
+![plot of chunk scatterplot_1](figure/scatterplot_1.png) 
 
 ---------------------------------------------------------------------------------------------
 ### Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
@@ -142,12 +149,16 @@ for (i in unique(activity.new$date)) {
         !is.na(activity.new$steps), "steps"])
     count <- count + 1
 }
+```
 
-hist(data.steps.3$steps, col = "red", main = "Total Number of Steps taken each day", 
+
+
+```r
+hist(data.steps.3$steps, breaks = 10, col = "red", main = "Total Number of Steps taken each day", 
     xlab = "Number of Steps taken each day")
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8.png) 
+![plot of chunk histogram_2](figure/histogram_2.png) 
 
 ---------------------------------------------------------------------------------------------
 ### Calculate and report the mean and median total number of steps taken per day
@@ -234,6 +245,7 @@ str(data.steps.4)
 ---------------------------------------------------------------------------------------------
 ### Make a panel plot containing a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis).
 
+
 ```r
 
 ggplot(data = data.steps.4, aes(interval, steps)) + geom_line(stat = "identity") + 
@@ -241,7 +253,7 @@ ggplot(data = data.steps.4, aes(interval, steps)) + geom_line(stat = "identity")
     labs(title = "Average Number of Steps per 5-minutes time interval")
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
+![plot of chunk scatterplot_2](figure/scatterplot_2.png) 
 
 ```r
 

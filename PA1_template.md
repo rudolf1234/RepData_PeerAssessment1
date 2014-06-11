@@ -1,4 +1,3 @@
-
 # Reproducible Research: Peer Assessment 1
 Author
 Rudolf Stolz  
@@ -15,20 +14,12 @@ library(lubridate)
 library(plyr)
 ```
 
-```
-## 
-## Attaching package: 'plyr'
-## 
-## Das folgende Objekt ist maskiert from 'package:lubridate':
-## 
-##     here
-```
-
 
 ---------------------------------------------------------------------------------------------
 ### Load Raw Data
 **Note:**  
 This File assumes, that the data file activity.zip is stored in the R Working Directory!!!  
+Data Download done on 140609.
 
 ```r
 activity <- read.csv(unz("activity.zip", "activity.csv"), header = TRUE, sep = ",")
@@ -50,6 +41,7 @@ for (i in unique(activity$date)) {
 ```
 
 
+**Histogram:**
 
 ```r
 hist(data.steps.1$steps, breaks = 10, col = "red", main = "Total Number of Steps taken each day", 
@@ -60,6 +52,7 @@ hist(data.steps.1$steps, breaks = 10, col = "red", main = "Total Number of Steps
 
 ---------------------------------------------------------------------------------------------
 ### Calculate and report the mean and median total number of steps taken per day
+**Report - Mean and Median - TABLE**
 
 ```r
 summary(data.steps.1)
@@ -74,6 +67,15 @@ summary(data.steps.1)
 ##  3rd Qu.:12811  
 ##  Max.   :21194
 ```
+
+
+**Report - Mean and Median - BOXPLOT**
+
+```r
+boxplot(data.steps.1, xlab = "Original Data Set")
+```
+
+![plot of chunk boxplot_1](figure/boxplot_1.png) 
 
 
 ## What is the average daily activity pattern?
@@ -162,6 +164,7 @@ hist(data.steps.3$steps, breaks = 10, col = "red", main = "Total Number of Steps
 
 ---------------------------------------------------------------------------------------------
 ### Calculate and report the mean and median total number of steps taken per day
+**Report - Mean and Median - TABLE**
 
 ```r
 summary(data.steps.3)
@@ -177,25 +180,46 @@ summary(data.steps.3)
 ##  Max.   :21194
 ```
 
+
+**Report - Mean and Median - BOXPLOT**
+
+```r
+boxplot(data.steps.3, xlab = "Original Data Set with imputing missing values")
+```
+
+![plot of chunk boxplot_2](figure/boxplot_2.png) 
+
+
 ---------------------------------------------------------------------------------------------
 ### Compare the first and the last measurement
+**Report - Mean and Median - TABLE**
 
 ```r
 compare <- data.frame(summary(data.steps.1), summary(data.steps.3))
-names(compare) <- c("col1", "col2", "First Measurement", "col4", "col5", "Last Measurement")
+names(compare) <- c("col1", "col2", "ODS", "col4", "col5", "ODS with imputing missing values")
 compare[, c(3, 6)]
 ```
 
 ```
-##   First Measurement Last Measurement
-## 1   Min.   :    0    Min.   :   41  
-## 2   1st Qu.: 6778    1st Qu.: 9819  
-## 3   Median :10395    Median :10766  
-## 4   Mean   : 9354    Mean   :10766  
-## 5   3rd Qu.:12811    3rd Qu.:12811  
-## 6   Max.   :21194    Max.   :21194
+##               ODS ODS with imputing missing values
+## 1 Min.   :    0                    Min.   :   41  
+## 2 1st Qu.: 6778                    1st Qu.: 9819  
+## 3 Median :10395                    Median :10766  
+## 4 Mean   : 9354                    Mean   :10766  
+## 5 3rd Qu.:12811                    3rd Qu.:12811  
+## 6 Max.   :21194                    Max.   :21194
 ```
 
+
+**Report - Mean and Median - BOXPLOT**
+
+```r
+par(mfrow = c(1, 2))
+boxplot(data.steps.1, xlab = "Original Data Set")
+boxplot(data.steps.3, xlab = "Original Data Set with imputing missing values")
+```
+
+![plot of chunk boxplot_3](figure/boxplot_3.png) 
 
 
 
@@ -254,10 +278,6 @@ ggplot(data = data.steps.4, aes(interval, steps)) + geom_line(stat = "identity")
 ```
 
 ![plot of chunk scatterplot_2](figure/scatterplot_2.png) 
-
-```r
-
-```
 
 
 
